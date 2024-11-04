@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:42:47 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/02 17:10:11 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/04 01:09:20 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,14 @@ static int	conver_type(va_list args, char const *format, int *counts)
 		return (*counts += ft_putchar(va_arg(args, int)));
 	else if (*format == 's')
 		return (*counts += ft_putstr(va_arg(args, char *), counts));
-	/*else if (*format == 'p')
-		return (*counts += ft_putptr(va_arg(args, void *), counts));*/
+	else if (*format == 'p')
+		return (*counts += ft_putptr(va_arg(args, void *), counts));
 	else if (*format == 'd' || *format == 'i')
 		return (*counts += ft_putnbr(va_arg(args, int), counts));
-	/*
 	else if (*format == 'u')
 		return (*counts += ft_putunsnbr(va_arg(args, unsigned int), counts));
 	else if (*format == 'x' || *format == 'X')
-		return (*counts += ft_puthex(va_arg(args, unsigned long), counts));*/
+		return (*counts += ft_puthex(va_arg(args, unsigned long), counts));
 	else if (*format == '%')
 		return (*counts += ft_putchar('%'));
 	else

@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 16:37:27 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/02 17:09:10 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/03 20:10:24 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,30 @@ int ft_putnbr(int format, int *counts)
 	{
 		ft_putnbr((format / 10), counts);
 		ft_putchar((format % 10) + '0');
+	}
+	else
+		ft_putchar(format + '0');
+    return (*counts);
+}
+
+int	ft_unsnbr(unsigned int format, int *counts)
+{
+	if (format > 9)
+	{
+		ft_putnbr((format / 10), counts);
+		ft_putchar((format % 10) + '0');
+	}
+	else
+		ft_putchar(format + '0');
+    return (*counts);
+}
+
+int	ft_puthex(unsigned long format, int *counts)
+{
+	if (format < 16)
+	{
+		ft_putnbr((format / 16), counts);
+		ft_putchar((format % 16) + '0');
 	}
 	else
 		ft_putchar(format + '0');
