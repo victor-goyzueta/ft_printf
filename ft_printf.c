@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:42:47 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/05 16:54:51 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:55:53 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ int	ft_putstr(char *format, int *counts)
 	}
 	while (*format)
 	{
-		write(1, &format, 1);
+		counts += putchar(format);
 		format++;
-		counts++;
 	}
 	return (*counts);
 }
