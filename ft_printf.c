@@ -6,16 +6,16 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:42:47 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/05 17:55:53 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:46:25 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_putchar(int format)
+int	ft_putchar(int format, int *counts)
 {
 	write(1, &format, 1);
-	return (1);
+	return (counts++);
 }
 
 int	ft_putstr(char *format, int *counts)
@@ -23,7 +23,7 @@ int	ft_putstr(char *format, int *counts)
 	if(!format)
 	{
 		write(1, "(null)", 6);
-		return (6);
+		return (counts += 6);
 	}
 	while (*format)
 	{
@@ -36,7 +36,7 @@ int	ft_putstr(char *format, int *counts)
 static int	conver_type(va_list args, char const *format, int *counts)
 {
 	if (*format == 'c')
-		return (*counts += ft_putchar(va_arg(args, int)));
+		return (*counts += ft_putchar(va_arg(args, int), counts));
 	else if (*format == 's')
 		return (*counts += ft_putstr(va_arg(args, char *), counts));
 	else if (*format == 'p')
@@ -48,7 +48,7 @@ static int	conver_type(va_list args, char const *format, int *counts)
 	else if (*format == 'x' || *format == 'X')
 		return (*counts += ft_puthex(va_arg(args, unsigned long), counts));
 	else if (*format == '%')
-		return (*counts += ft_putchar('%'));
+		return (*counts += ft_putchar('%', counts));
 	else
 		return (-1);
 }
@@ -69,7 +69,7 @@ int	ft_printf(char const *format, ...)
 				return (-1);
 		}
 		else
-			counts += ft_putchar((int)*format);
+			counts += ft_putchar(*format, counts);
 		format++;
 	}
 	va_end(args);
