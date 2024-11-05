@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:42:47 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/05 20:47:17 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/05 21:47:00 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int	ft_putchar(int format, int *counts)
 {
 	write(1, &format, 1);
-	return (counts++);
+	return (*counts++);
 }
 
 int	ft_putstr(char *format, int *counts)
 {
-	if(!format)
+	if (!format)
 	{
 		write(1, "(null)", 6);
 		return (counts += 6);
@@ -67,6 +67,8 @@ int	ft_printf(char const *format, ...)
 			format++;
 			if (conver_type(args, format, &counts) == -1)
 				return (-1);
+			else
+				counts += conver_type(args, format, &counts);
 		}
 		else
 			counts += ft_putchar(*format, counts);
@@ -75,4 +77,3 @@ int	ft_printf(char const *format, ...)
 	va_end(args);
 	return (counts);
 }
-
