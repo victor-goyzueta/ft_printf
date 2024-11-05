@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:42:47 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/05 18:46:25 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:47:17 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	conver_type(va_list args, char const *format, int *counts)
 	else if (*format == 'u')
 		return (*counts += ft_putunsnbr(va_arg(args, unsigned int), counts));
 	else if (*format == 'x' || *format == 'X')
-		return (*counts += ft_puthex(va_arg(args, unsigned long), counts));
+		return (*counts += ft_puthex(va_arg(args, unsigned long), counts, format));
 	else if (*format == '%')
 		return (*counts += ft_putchar('%', counts));
 	else
@@ -75,13 +75,4 @@ int	ft_printf(char const *format, ...)
 	va_end(args);
 	return (counts);
 }
-/*
-int	main()
-{
-	int	result;
 
-	result = ft_printf("Hello world!");
-	ft_printf("\nDevuelve '%i'", result);
-	return 0;
-}
-*/

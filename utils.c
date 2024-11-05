@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 16:37:27 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/05 19:04:42 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:41:51 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,17 @@ int	ft_puthex(unsigned long num, int *counts, char format)
     return (*counts);
 }
 
-int	ft_putptr(void *, int *counts)
+int	ft_putptr(void *format, int *counts)
 {
-	//code
+	unsigned long	ptr;
+	
+	ptr = (unsigned long)format;	
+	if (!format)
+	{
+		write(1, "(nil)", 5);
+		return (counts += 5);
+	}
+	counts += ft_putstr("0x", counts);
+	counts += ft_puthex(ptr, counts, 'x');
+	return (*counts);
 }
