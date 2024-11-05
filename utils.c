@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 16:37:27 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/03 20:10:24 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:22:10 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ int	ft_puthex(unsigned long format, int *counts)
 		ft_putchar((format % 16) + '0');
 	}
 	else
-		ft_putchar(format + '0');
+		
     return (*counts);
 }
