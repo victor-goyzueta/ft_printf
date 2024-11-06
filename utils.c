@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 16:37:27 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/06 17:59:53 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/06 19:48:00 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int	ft_puthex(unsigned long num, int *counts, char format)
 		base = "0123456789ABCDEF";
 	if (num >= 16)
 		ft_puthex(num / 16, counts, format);
-	else
-		ft_putchar(base[num % 16], counts);
+	ft_putchar(base[num % 16], counts);
 	return (*counts);
 }
 
