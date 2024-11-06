@@ -6,29 +6,29 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:42:47 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/05 21:47:00 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:44:16 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_putchar(int format, int *counts)
+int	ft_putchar(int ch, int *counts)
 {
-	write(1, &format, 1);
+	write(1, &ch, 1);
 	return (*counts++);
 }
 
-int	ft_putstr(char *format, int *counts)
+int	ft_putstr(char *str, int *counts)
 {
-	if (!format)
+	if (!str)
 	{
 		write(1, "(null)", 6);
 		return (counts += 6);
 	}
-	while (*format)
+	while (*str)
 	{
-		counts += putchar(format);
-		format++;
+		counts += ft_putchar(str, counts);
+		str++;
 	}
 	return (*counts);
 }

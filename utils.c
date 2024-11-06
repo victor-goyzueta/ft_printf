@@ -6,43 +6,43 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 16:37:27 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/06 13:14:32 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:43:28 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_putnbr(int format, int *counts)
+int	ft_putnbr(int nbr, int *counts)
 {
-	if (format == -2147483648)
+	if (nbr == -2147483648)
 	{
 		write(1, "-2147483648", 11);
 		return (counts += 11);
 	}
-	else if (format < 0)
+	else if (nbr < 0)
 	{
 		counts += ft_putchar('-', counts);
-		ft_putnbr(-format, counts);
+		ft_putnbr(-nbr, counts);
 	}
-	else if (format > 9)
+	else if (nbr > 9)
 	{
-		ft_putnbr((format / 10), counts);
-		counts += ft_putchar((format % 10) + '0', counts);
+		ft_putnbr((nbr / 10), counts);
+		counts += ft_putchar((nbr % 10) + '0', counts);
 	}
 	else
-		counts += ft_putchar(format + '0', counts);
+		counts += ft_putchar(nbr + '0', counts);
 	return (*counts);
 }
 
-int	ft_unsnbr(unsigned int format, int *counts)
+int	ft_unsnbr(unsigned int unsnbr, int *counts)
 {
-	if (format > 9)
+	if (unsnbr > 9)
 	{
-		ft_putunsnbr((format / 10), counts);
-		counts += ft_putchar((format % 10) + '0', counts);
+		ft_putunsnbr((unsnbr / 10), counts);
+		counts += ft_putchar((unsnbr % 10) + '0', counts);
 	}
 	else
-		counts += ft_putchar(format + '0', counts);
+		counts += ft_putchar(unsnbr + '0', counts);
 	return (*counts);
 }
 
@@ -61,17 +61,17 @@ int	ft_puthex(unsigned long num, int *counts, char format)
 	return (*counts);
 }
 
-int	ft_putptr(void *format, int *counts)
+int	ft_putptr(void *ptr, int *counts)
 {
-	unsigned long	ptr;
+	unsigned long	p;
 
-	ptr = (unsigned long)format;
-	if (!format)
+	p = (unsigned long)ptr;
+	if (!ptr)
 	{
 		write(1, "(nil)", 5);
 		return (counts += 5);
 	}
 	counts += ft_putstr("0x", counts);
-	counts += ft_puthex(ptr, counts, 'x');
+	counts += ft_puthex(p, counts, 'x');
 	return (*counts);
 }
