@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:42:47 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/06 21:27:57 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:43:25 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_putstr(char *str)
 	}
 	while (*str)
 	{
-		ft_putchar(*str);
+		counts_ += ft_putchar(*str);
 		str++;
 	}
 	return (counts_);
@@ -74,11 +74,8 @@ int	ft_printf(char const *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (conver_type(args, format) == -1)
-			{
-				va_end(args);
+			if ((counts += conver_type(args, format)) == -1)
 				return (-1);
-			}
 		}
 		else
 			counts += ft_putchar(*format);

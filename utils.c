@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 16:37:27 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/06 21:42:11 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:40:34 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_putunsnbr(unsigned int unsnbr)
 	return (counts_);
 }
 
-int	ft_puthex(unsigned int num, char format)
+int	ft_puthex(unsigned long long num, char format)
 {
 	char	*base;
 	int		counts_;
@@ -62,6 +62,15 @@ int	ft_puthex(unsigned int num, char format)
 		base = "0123456789abcdef";
 	else
 		base = "0123456789ABCDEF";
+	/*
+	while (num >= 16)
+	{
+		counts_ += ft_putchar(base[num % 16]);
+		num = num / 16;
+	}
+	if (num < 16)
+		counts_ += ft_putchar(base[num % 16]);
+	*/
 	if (num >= 16)
 		ft_puthex(num / 16, format);
 	counts_ += ft_putchar(base[num % 16]);
@@ -70,17 +79,17 @@ int	ft_puthex(unsigned int num, char format)
 
 int	ft_putptr(void *ptr)
 {
-	unsigned long	p;
+	unsigned long long	p;
 	int				counts_;
 
 	counts_ = 0;
-	p = (unsigned long)ptr;
+	p = (unsigned long long)ptr;
 	if (!ptr)
 	{
 		write(1, "(nil)", 5);
 		return (counts_ += 5);
 	}
-	ft_putstr("0x");
-	ft_puthex(p, 'x');
+	counts_ += ft_putstr("0x");
+	counts_ += ft_puthex(p, 'x');
 	return (counts_);
 }
