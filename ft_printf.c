@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:42:47 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/09 03:41:00 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:35:11 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	conver_type(va_list args, char const *format)
 		return (counts_ += ft_putunsnbr(va_arg(args, unsigned int)));
 	else if (*format == 'x' || *format == 'X')
 	{
-		counts_ += ft_puthex(va_arg(args, unsigned int), *format);
+		counts_ += ft_puthex(va_arg(args, unsigned long long), *format);
 		return (counts_);
 	}
 	else if (*format == '%')
@@ -74,7 +74,8 @@ int	ft_printf(char const *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if ((counts += conver_type(args, format)) == -1)
+			counts += conver_type(args, format);
+			if (counts == -1)
 				return (-1);
 		}
 		else

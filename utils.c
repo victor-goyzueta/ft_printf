@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 16:37:27 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/09 03:41:01 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:33:30 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	ft_putnbr(int nbr)
 	else if (nbr < 0)
 	{
 		counts_ += ft_putchar('-');
-		ft_putnbr(-nbr);
+		counts_ += ft_putnbr(-nbr);
 	}
 	else if (nbr > 9)
 	{
-		ft_putnbr((nbr / 10));
+		counts_ += ft_putnbr((nbr / 10));
 		counts_ += ft_putchar((nbr % 10) + '0');
 	}
 	else
@@ -44,7 +44,7 @@ int	ft_putunsnbr(unsigned int unsnbr)
 	counts_ = 0;
 	if (unsnbr > 9)
 	{
-		ft_putunsnbr((unsnbr / 10));
+		counts_ += ft_putunsnbr((unsnbr / 10));
 		counts_ += ft_putchar((unsnbr % 10) + '0');
 	}
 	else
@@ -63,7 +63,7 @@ int	ft_puthex(unsigned long long num, char format)
 	else
 		base = "0123456789ABCDEF";
 	if (num == 0 && counts_ == 0)
-        return (counts_ += ft_putchar('0'));
+		return (counts_ += ft_putchar('0'));
 	if (num >= 16)
 		counts_ += ft_puthex(num / 16, format);
 	counts_ += ft_putchar(base[num % 16]);
@@ -73,7 +73,7 @@ int	ft_puthex(unsigned long long num, char format)
 int	ft_putptr(void *ptr)
 {
 	unsigned long long	p;
-	int				counts_;
+	int					counts_;
 
 	counts_ = 0;
 	p = (unsigned long long)ptr;
