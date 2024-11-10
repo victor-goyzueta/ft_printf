@@ -6,11 +6,9 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:16:59 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/10 16:57:07 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:34:31 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_printf.h"
 
 #include "ft_printf.h"
 

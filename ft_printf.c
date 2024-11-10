@@ -6,7 +6,7 @@
 /*   By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:42:47 by vgoyzuet          #+#    #+#             */
-/*   Updated: 2024/11/10 16:35:11 by vgoyzuet         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:43:07 by vgoyzuet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ int	ft_printf(char const *format, ...)
 			format++;
 			counts += conver_type(args, format);
 			if (counts == -1)
+			{
+				va_end(args);
 				return (-1);
+			}
 		}
 		else
 			counts += ft_putchar(*format);
