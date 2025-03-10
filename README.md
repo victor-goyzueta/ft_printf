@@ -12,7 +12,7 @@ int ft_printf(const char *format, ...)
 
 ## 1. Estructura General de `ft_printf`
 
-`ft_printf` debe recorrer el string de formato (`format`), procesando cada carácter. Al encontrar un carácter `%`, activará una función (`conver_type`) que, con ayuda de la lista de argumentos `va_list`, identificará y manejará el tipo de formato según el carácter especificador que siga a `%`. Las funciones esenciales incluyen:
+`ft_printf` debe recorrer el string de `format`, procesando cada carácter. Al encontrar un carácter `%`, activará la función `conver_type` que, con ayuda de la lista de argumentos `va_list`, identificará y manejará el tipo de formato según el carácter especificador que siga a `%`. Las funciones esenciales incluyen:
 
 - **`conver_type`**: Identifica el especificador de formato y llama a la función correspondiente para manejarlo.
 
@@ -24,7 +24,7 @@ int ft_printf(const char *format, ...)
     - `ft_putchar`
     - `ft_putstr`
     - `ft_putnbr`
-    - `ft_putunbnr`
+    - `ft_putunnbr`
     - `ft_puthex`
     - `ft_putptr`
 
@@ -47,14 +47,14 @@ El prototipo para `ft_printf` debe incluir un parámetro `const char *format`, s
 La función `conver_type` se encarga de:
 
 1. **Recibir el carácter** que sigue a `%`, representando el tipo de formato.
-2. **Identificar el tipo de conversión** usando una estructura `if-else` o `switch`, basada en el valor del carácter.
+2. **Identificar el tipo de conversión** usando una estructura `if-else`, basada en el valor del carácter.
 3. **Llamar a la función adecuada** para manejar el tipo de dato que corresponde al especificador y pasarle el valor extraído de `va_list`.
 
 ### Parámetros de `conver_type`
 
 - `va_args`: Permite extraer el argumento correspondiente al especificador de formato.
 - `char *format`: El especificador de formato que sigue al símbolo `%`.
-- `int counts`: Un puntero a un contador para acumular el número total de caracteres impresos.
+- `int counts`: La variable a un contador para acumular el número total de caracteres impresos.
 
 **Consideraciones**:
 
@@ -65,7 +65,13 @@ La función `conver_type` se encarga de:
 
 ## 4. Funciones Específicas de Impresión
 
-Cada especificador necesita su propia función de impresión, como `ft_putchar` para caracteres individuales y `ft_putstr` para cadenas.
+Cada especificador necesita su propia función de impresión, como :
+    - `ft_putchar` para carácteres individuales.
+    - `ft_putstr` para cadena de carácteres.
+    - `ft_putnbr` para numeros enteros.
+    - `ft_putunnbr` para números enteros sin signo.
+    - `ft_puthex` para bases hexadecimales.
+    - `ft_putptr` para direcciones de memoria.
 
 ### Ejemplos de Comportamiento Esperado
 
@@ -75,9 +81,18 @@ Cada especificador necesita su propia función de impresión, como `ft_putchar` 
 2. **Función para cadenas (`s`)**:
     - Imprime cada carácter de la cadena pasada como argumento.
     - Aumenta `counts` en la cantidad de caracteres impresos.
-3. **Funciones adicionales** (`p`, `d`, `i`, `u`, `x`, `X`, `%`):
-    - Cada función de este grupo formatea su entrada de acuerdo con el tipo especificado.
-    - Actualiza `counts` con el número de caracteres impresos.
+3. **Función para enteros (`d` o `i`)**:
+    - Imprime el entero del valor pasado como argumento.
+    - Aumenta `count` en la cantidad de dígitos impresos, contando con el signo (`-`) si el entero fuese negativo.
+4. **Función para hexadecimales (`x` o `X`)**:
+    - Imprime el hexadecimal del valor pasado como argumento.
+    - Aumento `count` en la cantidad de caracteres impresos.
+5. **Función para direcciones de memoria (`p`)**:
+    - Imprime la dirección de memoria del argumento.
+    - Aumenta `count` en la cantidad de caracteres de los que conste la dirección impresa.
+6. **Función para % (`%`)**:
+    - Imprime el carácter %.
+    - Aumenta `count` en uno.
 
 Estas funciones deben ajustarse para devolver el número de caracteres impresos, y `conver_type` las usará para actualizar el contador total.
 
