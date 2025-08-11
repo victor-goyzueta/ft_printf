@@ -1,22 +1,16 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vgoyzuet <vgoyzuet@student.42madrid.com    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/28 21:20:14 by vgoyzuet          #+#    #+#              #
-#    Updated: 2024/11/06 16:57:35 by vgoyzuet         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+GREEN	=	\033[1;32m
+CYAN	=	\033[1;36m
+WHITE	=	\033[0m
+CLEAR	=	\r\033[K
 
-NAME = libftprintf.a
+NAME	=	libftprintf.a
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CC		=	cc
+CFLAGS	=	-Wall -Wextra -Werror
 
-SRCS = ft_printf.c\
-	utils.c\
+SRCS	= 	ft_printf.c	\
+			utils.c		\
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -24,19 +18,19 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
-	@echo "libftprintf successfully created."
+	@echo "$(CLEAR)$(GREEN)libftprintf successfully created."
 
 %.o: %c
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Copiling $<..."
+	@printf "$(CLEAR)$(CYAN)Compiling $<..."
 
 clean:
 	@rm -f $(OBJS)
-	@echo "Objetcs files deleted."
+	@echo "$(CLEAR)$(CYAN)libftprintf: Objetcs files deleted."
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Clean completed, libftpriintf.a deleted."
+	@echo "$(CLEAR)$(CYAN)libftprintf: Clean completed, libftprintf.a deleted."
 
 re: fclean all
 
